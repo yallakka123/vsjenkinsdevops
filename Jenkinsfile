@@ -24,7 +24,18 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 dir('ws') {
-                    checkout scm
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [
+                            [$class: 'SparseCheckoutPaths',
+                             sparseCheckoutPaths: [
+                                 [$class: 'SparseCheckoutPath', path: 'force-app/main/default/layouts']
+                             ]
+                            ]
+                        ],
+                        userRemoteConfigs: [[url: 'https://github.com/yallakka123/vsjenkinsdevops']]
+                    ])
                 }
             }
         }
@@ -61,5 +72,3 @@ pipeline {
                         --resultformat human \
                         --codecoverage \
                         --testlevel RunLocalTests \
-                        --wait 10 \
-                        -u DevOrg
