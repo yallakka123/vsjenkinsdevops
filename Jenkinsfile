@@ -21,76 +21,79 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('Enable Git Long Paths') {
             steps {
-                git branch: 'dev', url: 'https://github.com/yallakka123/vsjenkinsdevops.git'
+                bat 'git config --system core.longpaths true'
             }
         }
 
-        stage('Install Node & SFDX') {
+        stage('Checkout Code') {
             steps {
-                bat '''
-                    echo Installing Salesforce CLI and Delta Plugin...
-                    npm install --global sfdx-cli
-                    npm install --global sfdx-git-delta
-                    sfdx plugins:install sfdx-git-delta
-                    sfdx --version
-                '''
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/master']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'CloneOption', noTags: false, shallow: false]],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/yallakka123/vsjenkinsdevops.git',
+                        credentialsId: 'github-pat'
+                    ]]
+                ])
             }
         }
 
         stage('Authenticate to Salesforce Orgs') {
             steps {
-                bat """
-                    echo Authenticating to Dev Org...
-                    sfdx force:auth:password:login ^
-                        --clientid %SF_CLIENT_ID_DEV% ^
-                        --clientsecret %SF_CLIENT_SECRET_DEV% ^
-                        --username %SF_DEV_USER_USR% ^
-                        --password %SF_DEV_USER_PWD% ^
-                        --instanceurl https://test.salesforce.com ^
+                sh '''
+                    echo "Authenticating to Dev Org..."
+                    sfdx force:auth:password:login \
+                        --clientid $SF_CLIENT_ID_DEV \
+                        --clientsecret $SF_CLIENT_SECRET_DEV \
+                        --username $SF_DEV_USER_USR \
+                        --password $SF_DEV_USER_PWD \
+                        --instanceurl https://test.salesforce.com \
                         --setalias DevOrg
 
-                    echo Authenticating to Int Org...
-                    sfdx force:auth:password:login ^
-                        --clientid %SF_CLIENT_ID_INT% ^
-                        --clientsecret %SF_CLIENT_SECRET_INT% ^
-                        --username %SF_INT_USER_USR% ^
-                        --password %SF_INT_USER_PWD% ^
-                        --instanceurl https://test.salesforce.com ^
+                    echo "Authenticating to Int Org..."
+                    sfdx force:auth:password:login \
+                        --clientid $SF_CLIENT_ID_INT \
+                        --clientsecret $SF_CLIENT_SECRET_INT \
+                        --username $SF_INT_USER_USR \
+                        --password $SF_INT_USER_PWD \
+                        --instanceurl https://test.salesforce.com \
                         --setalias IntOrg
-                """
+                '''
             }
         }
 
         stage('Run Tests & Code Coverage on DEV') {
             steps {
-                bat """
-                    echo Running Apex Tests on DEV...
-                    sfdx force:apex:test:run ^
-                        --resultformat human ^
-                        --codecoverage ^
-                        --testlevel RunLocalTests ^
-                        --wait 10 ^
+                sh '''
+                    echo "Running Apex Tests on DEV..."
+                    sfdx force:apex:test:run \
+                        --resultformat human \
+                        --codecoverage \
+                        --testlevel RunLocalTests \
+                        --wait 10 \
                         -u DevOrg
-                """
+                '''
             }
         }
 
         stage('Validate Deployment to INT (Delta Only)') {
             steps {
-                bat """
-                    echo Generating Delta Changes...
-                    if not exist delta mkdir delta
+                sh '''
+                    echo "Generating Delta Changes..."
+                    mkdir delta
                     sfdx sgd:source:delta --to HEAD --from HEAD~1 --output delta
 
-                    echo Validating Delta Deployment on INT...
-                    sfdx force:source:deploy ^
-                        --sourcepath delta ^
-                        --checkonly ^
-                        --testlevel RunLocalTests ^
+                    echo "Validating Delta Deployment on INT..."
+                    sfdx force:source:deploy \
+                        --sourcepath delta \
+                        --checkonly \
+                        --testlevel RunLocalTests \
                         -u IntOrg
-                """
+                '''
             }
         }
 
@@ -99,13 +102,13 @@ pipeline {
                 expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
             }
             steps {
-                bat """
-                    echo Deploying Delta Changes to INT...
-                    sfdx force:source:deploy ^
-                        --sourcepath delta ^
-                        --testlevel RunLocalTests ^
+                sh '''
+                    echo "Deploying Delta Changes to INT..."
+                    sfdx force:source:deploy \
+                        --sourcepath delta \
+                        --testlevel RunLocalTests \
                         -u IntOrg
-                """
+                '''
             }
         }
     }
