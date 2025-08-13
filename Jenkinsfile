@@ -23,7 +23,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                checkout scm
+                git branch: 'dev', url: 'https://github.com/yallakka123/vsjenkinsdevops.git'
             }
         }
 
