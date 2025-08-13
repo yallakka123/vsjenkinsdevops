@@ -21,24 +21,11 @@ pipeline {
     }
 
     stages {
-        stage('Enable Git Long Paths') {
-            steps {
-                bat 'git config --system core.longpaths true'
-            }
-        }
-
         stage('Checkout Code') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/master']],
-                    doGenerateSubmoduleConfigurations: false,
-                    extensions: [[$class: 'CloneOption', noTags: false, shallow: false]],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/yallakka123/vsjenkinsdevops.git',
-                        credentialsId: 'github-pat'
-                    ]]
-                ])
+                dir('ws') {
+                    checkout scm
+                }
             }
         }
 
@@ -76,40 +63,3 @@ pipeline {
                         --testlevel RunLocalTests \
                         --wait 10 \
                         -u DevOrg
-                '''
-            }
-        }
-
-        stage('Validate Deployment to INT (Delta Only)') {
-            steps {
-                sh '''
-                    echo "Generating Delta Changes..."
-                    mkdir delta
-                    sfdx sgd:source:delta --to HEAD --from HEAD~1 --output delta
-
-                    echo "Validating Delta Deployment on INT..."
-                    sfdx force:source:deploy \
-                        --sourcepath delta \
-                        --checkonly \
-                        --testlevel RunLocalTests \
-                        -u IntOrg
-                '''
-            }
-        }
-
-        stage('Deploy Delta Changes to INT') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
-            steps {
-                sh '''
-                    echo "Deploying Delta Changes to INT..."
-                    sfdx force:source:deploy \
-                        --sourcepath delta \
-                        --testlevel RunLocalTests \
-                        -u IntOrg
-                '''
-            }
-        }
-    }
-}
