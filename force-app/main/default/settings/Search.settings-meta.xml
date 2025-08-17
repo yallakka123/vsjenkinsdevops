@@ -472,6 +472,12 @@
             <name>WorkOrderLineItem</name>
             <resultsPerPageCount>25</resultsPerPageCount>
         </searchSettingsByObject>
+        <searchSettingsByObject>
+            <enhancedLookupEnabled>false</enhancedLookupEnabled>
+            <lookupAutoCompleteEnabled>false</lookupAutoCompleteEnabled>
+            <name>deltatest__c</name>
+            <resultsPerPageCount>25</resultsPerPageCount>
+        </searchSettingsByObject>
     </searchSettingsByObject>
     <sidebarAutoCompleteEnabled>true</sidebarAutoCompleteEnabled>
     <sidebarDropDownListEnabled>true</sidebarDropDownListEnabled>

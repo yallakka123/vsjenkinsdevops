@@ -7,4 +7,5 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <tabs>standard-Chatter</tabs>
     <tabs>Devopspr__c</tabs>
+    <tabs>deltatest__c</tabs>
 </CustomApplication>

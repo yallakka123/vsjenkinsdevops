@@ -11,10 +11,14 @@
     <tabs>standard-SalesforceJourney</tabs>
     <tabs>standard-JourneyMap</tabs>
     <tabs>Devopspr__c</tabs>
+    <tabs>deltatest__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
             <tab>Devopspr__c</tab>
+        </mappings>
+        <mappings>
+            <tab>deltatest__c</tab>
         </mappings>
         <mappings>
             <tab>standard-JourneyHome</tab>

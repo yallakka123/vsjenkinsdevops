@@ -22,11 +22,15 @@
     <tabs>standard-CollaborationGroup</tabs>
     <tabs>standard-File</tabs>
     <tabs>Devopspr__c</tabs>
+    <tabs>deltatest__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningSalesConsole_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
             <tab>Devopspr__c</tab>
+        </mappings>
+        <mappings>
+            <tab>deltatest__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>

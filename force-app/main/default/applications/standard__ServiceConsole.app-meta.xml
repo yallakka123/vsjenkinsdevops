@@ -182,9 +182,13 @@
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>Devopspr__c</tabs>
+    <tabs>deltatest__c</tabs>
     <workspaceConfig>
         <mappings>
             <tab>Devopspr__c</tab>
+        </mappings>
+        <mappings>
+            <tab>deltatest__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>
