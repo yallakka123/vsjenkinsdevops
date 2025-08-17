@@ -8,6 +8,6 @@
     <label>Data Manager</label>
     <navType>Standard</navType>
     <tabs>standard-AnalyticsDataManager</tabs>
-    <tabs>Devopspr__c</tabs>
+    <tabs>Devops__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

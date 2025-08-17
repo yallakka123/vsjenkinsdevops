@@ -11,11 +11,11 @@
     <tabs>standard-CmsChannel</tabs>
     <tabs>standard-CmsWorkspaces</tabs>
     <tabs>standard-CmsExperiences</tabs>
-    <tabs>Devopspr__c</tabs>
+    <tabs>Devops__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
-            <tab>Devopspr__c</tab>
+            <tab>Devops__c</tab>
         </mappings>
         <mappings>
             <tab>standard-CmsAuthorHome</tab>

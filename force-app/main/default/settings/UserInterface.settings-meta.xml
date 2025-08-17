@@ -13,7 +13,7 @@
     <enableHoverDetails>true</enableHoverDetails>
     <enableInlineEdit>true</enableInlineEdit>
     <enableNewPageLayoutEditor>true</enableNewPageLayoutEditor>
-    <enablePersonalCanvas>false</enablePersonalCanvas>
+    <enablePersonalCanvas>true</enablePersonalCanvas>
     <enablePrintableListViews>true</enablePrintableListViews>
     <enableProfileCustomTabsets>true</enableProfileCustomTabsets>
     <enableQuickCreate>true</enableQuickCreate>

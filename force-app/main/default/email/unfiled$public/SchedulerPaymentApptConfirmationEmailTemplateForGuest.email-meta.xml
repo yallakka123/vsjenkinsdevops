@@ -2,7 +2,7 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>false</available>
     <description>Email Template to confirm scheduling of a paid service appointment for guest users.</description>
-    <encodingKey>UTF-8</encodingKey>
+    <encodingKey>ISO-8859-1</encodingKey>
     <name>Scheduler Payments: Service Appointment Confirmation Email for Guest Users</name>
     <style>none</style>
     <subject>Appointment scheduled</subject>

@@ -44,6 +44,10 @@
                 <behavior>Required</behavior>
                 <field>TransitTimeUnit</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>WeightUnit</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

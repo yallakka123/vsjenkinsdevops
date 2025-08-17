@@ -15,7 +15,7 @@
     <enhancedPermSetList>false</enhancedPermSetList>
     <enhancedUserListView>false</enhancedUserListView>
     <enhancedUserRoleListView>false</enhancedUserRoleListView>
-    <groupSummaryUIEnhancement>false</groupSummaryUIEnhancement>
+    <groupSummaryUIEnhancement>true</groupSummaryUIEnhancement>
     <permsetsInFieldCreation>false</permsetsInFieldCreation>
     <psaExpirationUIEnabled>true</psaExpirationUIEnabled>
     <restrictedProfileCloning>false</restrictedProfileCloning>

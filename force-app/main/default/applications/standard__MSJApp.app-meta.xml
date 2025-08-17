@@ -10,11 +10,11 @@
     <tabs>standard-JourneyHome</tabs>
     <tabs>standard-SalesforceJourney</tabs>
     <tabs>standard-JourneyMap</tabs>
-    <tabs>Devopspr__c</tabs>
+    <tabs>Devops__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
-            <tab>Devopspr__c</tab>
+            <tab>Devops__c</tab>
         </mappings>
         <mappings>
             <tab>standard-JourneyHome</tab>

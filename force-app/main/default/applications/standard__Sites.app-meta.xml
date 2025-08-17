@@ -6,5 +6,5 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <tabs>standard-Chatter</tabs>
-    <tabs>Devopspr__c</tabs>
+    <tabs>Devops__c</tabs>
 </CustomApplication>

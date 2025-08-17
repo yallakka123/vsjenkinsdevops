@@ -181,10 +181,10 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
-    <tabs>Devopspr__c</tabs>
+    <tabs>Devops__c</tabs>
     <workspaceConfig>
         <mappings>
-            <tab>Devopspr__c</tab>
+            <tab>Devops__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>

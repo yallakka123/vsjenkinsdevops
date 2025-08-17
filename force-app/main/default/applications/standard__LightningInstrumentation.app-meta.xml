@@ -8,6 +8,6 @@
     <label>LightningInstrumentation</label>
     <navType>Standard</navType>
     <tabs>standard-LightningInstrumentation</tabs>
-    <tabs>Devopspr__c</tabs>
+    <tabs>Devops__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>
