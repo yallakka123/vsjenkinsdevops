@@ -112,4 +112,8 @@
         <name>JenkinsCICD</name>
         <type>ConnectedApp</type>
     </appMenuItems>
+    <appMenuItems>
+        <name>JWT_JENKINS</name>
+        <type>ConnectedApp</type>
+    </appMenuItems>
 </AppMenu>
